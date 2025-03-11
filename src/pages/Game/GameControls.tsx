@@ -4,11 +4,10 @@ import minus from "../../assets/controls/minus.png";
 import plus from "../../assets/controls/plus.png";
 import turbo from "../../assets/controls/turbo.png";
 import spinner from "../../assets/spinner/button.png"
-
-
+import { PropsGameControls } from "../../interfaces/interfaces";
 
 export function GameControls() {
-  const controls : {key:string,img:string}[] = [
+  const controls : PropsGameControls[] = [
     { key: "turbo", img: turbo },
     { key: "minus", img: minus },
     { key: "spinner", img: spinner },

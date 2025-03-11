@@ -20,6 +20,7 @@ import {
 } from 'pixi.js'
 import {  useEffect, useRef } from 'react'
 import { Background } from "../../game/Background";
+import { PropsGameControls } from "../../interfaces/interfaces";
 
 extend({
   Container,
@@ -28,7 +29,7 @@ extend({
 })
 
 export function GameSlotMachine() {
-  const reelSymbols : {key:string,img:string}[] = [
+  const reelSymbols : PropsGameControls[] = [
     { key: "banana", img: banana },
     { key: "flora", img: flora },
     { key: "hourglass", img: hourglass },

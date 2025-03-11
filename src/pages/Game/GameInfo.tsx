@@ -3,14 +3,10 @@ import multiplierBar from '../../assets/bottom_panel/multiplier_bar.png'
 import panel from '../../assets/bottom_panel/panel.png'
 import wallet from '../../assets/bottom_panel/wallet_icon.png'
 import win from '../../assets/bottom_panel/win_icon.png'
-
-interface PropsInfo{
-  icon: string;
-  value: number;
-}
+import { PropsGameInfo } from '../../interfaces/interfaces'
 
 export function GameInfo() {
-  const info :PropsInfo[] = [
+  const info :PropsGameInfo[] = [
     {icon:wallet,value:0.00},
     {icon:coin,value:0.00},
     {icon:win,value:0.00}
