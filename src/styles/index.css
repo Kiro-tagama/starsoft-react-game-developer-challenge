@@ -33,11 +33,11 @@ html {
 
 body {
   background-image: url("../assets/decoratives/jungle_background.png");
-  @apply flex justify-center py-5 h-full bg-no-repeat bg-center bg-cover md:bg-contain text-emerald-100 bg-[#081a13];
+  @apply flex justify-center py-1 h-full bg-no-repeat bg-center bg-cover md:bg-contain text-emerald-100 bg-[#081a13] max-h-screen;
 }
 
 body > div {
-  @apply max-w-7xl w-full md:w-[20%] p-2;
+  @apply  sm:max-w-md md:max-w-[370px] md:scale-90 flex items-center p-1;
 }
 
 h1 {

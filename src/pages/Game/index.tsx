@@ -1,22 +1,12 @@
-/*
-  imagens usadas
-  
-  bottom_panel - ok
-  controls - ok
-  decoratives
-  mascot
-  reel
-  reels_symbols
-  spinner - ok 
-*/
-
 import "../../styles/game.css";
 import { GameControls } from "./GameControls";
 import { GameInfo } from "./GameInfo";
+import { GameSlotMachine } from "./GameSlotMachine";
 
 export default function Game(){
   return(
-    <div>Game
+    <div>
+      <GameSlotMachine/>
       <GameInfo/>
       <GameControls/>
     </div>

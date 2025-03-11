@@ -24,7 +24,7 @@ export function GameInfo() {
       <div style={{ backgroundImage: `url(${panel})`}} className=' infoCard'>
         {info.map((item:PropsInfo,index:number)=>{
           const alt = item.icon.split("/")
-          return <div key={index} className='bg-em'>
+          return <div key={index}>
             <img 
               src={item.icon} 
               alt={alt[alt.length-1]} 
