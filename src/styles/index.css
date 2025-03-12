@@ -2,7 +2,7 @@
 
 @font-face {
   font-family: "KeepOnTruckin";
-  src: url("../assets/fonts/keep-on-truckin.ttf") format("truetype");
+  src: url("../../public/assets/fonts/keep-on-truckin.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
 }
@@ -37,11 +37,15 @@ body {
 }
 
 body > div {
-  @apply  sm:max-w-md md:max-w-[370px] md:scale-90 flex items-center p-1;
+  @apply sm:max-w-md md:max-w-[370px] md:scale-90 flex items-center p-1;
 }
 
 h1 {
   font-size: 3.2em;
+  line-height: 1.1;
+}
+h2 {
+  font-size: 2.2em;
   line-height: 1.1;
 }
 
@@ -55,6 +59,8 @@ button {
   background-color: #1a1a1a;
   cursor: pointer;
   transition: border-color 0.25s;
+
+  @apply w-full;
 }
 button:hover {
   border-color: #646cff;
@@ -64,4 +70,6 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
-
+input {
+  @apply w-full bg-transparent placeholder:text-emerald-400 text-emerald-200 text-sm border border-emerald-200 rounded-md px-3 py-2 transition duration-300 ease-in focus:outline-none focus:border-emerald-400 hover:border-emerald-300 shadow-sm focus:shadow;
+}

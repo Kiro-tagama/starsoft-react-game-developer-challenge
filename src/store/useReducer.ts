@@ -1,38 +1,32 @@
-import { PropsUser } from "../interfaces/interfaces";
+import { State } from "../interfaces/interfaces";
 
-const initialState:{user:PropsUser,isLoggedIn:boolean} = {
-  user: {
-    name: '',
-    password: '',
-    balance: 0
-  },
-  isLoggedIn: false
+const initialState: State = {
+  user: { name: "", password: "", balance: 0 },
+  isLoggedIn: false,
 };
 
-export function userReducer (state = initialState, action) {
+export const userReducer = (
+  state = initialState,
+  action: UserAction
+): State => {
   switch (action.type) {
-    case 'REGISTER_USER':
+    case "REGISTER_USER":
       return {
         ...state,
-        user: action.payload,
-        isLoggedIn: false
+        user: { ...action.payload },
+        isLoggedIn: true,
       };
-    case 'LOGIN_USER':
-      if (state.user.name === action.payload.name && state.user.password === action.payload.password) {
-        return {
-          ...state,
-          isLoggedIn: true
-        };
-      }
-      return state;
-    case 'UPDATE_BALANCE':
-      if (state.isLoggedIn) {
-        return {
-          ...state,
-          user: { ...state.user, balance: state.user.balance + action.payload }
-        };
-      }
-      return state;
+    case "LOGIN_USER":
+      return {
+        ...state,
+        user: { ...state.user, ...action.payload },
+        isLoggedIn: true,
+      };
+    case "UPDATE_BALANCE":
+      return {
+        ...state,
+        user: { ...state.user, balance: state.user.balance + action.payload },
+      };
     default:
       return state;
   }

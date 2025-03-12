@@ -1,20 +1,18 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import './styles/index.css'
-// import App from "./App";
-import Home from "./pages/Home";
-import Game from "./pages/Game";
-import NotFound from "./pages/NotFound";
+import { BrowserRouter } from "react-router-dom";
+import "./styles/index.css";
+
+import { store } from "./store/store";
+import { Provider } from "react-redux";
+import { App } from "./App";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Home/>} />
-        <Route path="/game" element={<Game/>} />
-        <Route path="*" element={<NotFound/>} />
-      </Routes>
-    </BrowserRouter>
+    <Provider store={store}>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </Provider>
   </React.StrictMode>
 );
