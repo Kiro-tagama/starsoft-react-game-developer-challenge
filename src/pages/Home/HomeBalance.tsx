@@ -11,11 +11,10 @@ export function HomeBalance() {
   const [value, setValue] = useState(0);
 
   const handleBalance = () => {
+    if (value <= 0 && user.balance && user.balance > 0) return navigate("game");
+    if (value <= 0) return alert("Adicione saldo para jogar");
+
     dispatch(updateBalance(value));
-
-    if (value <= 0 || user.balance == 0)
-      return alert("Adicione saldo para jogar");
-
     navigate("game");
   };
 

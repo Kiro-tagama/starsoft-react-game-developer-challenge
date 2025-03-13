@@ -8,6 +8,22 @@ export interface PropsGameInfo {
   value: number;
 }
 
+export interface PropsGameHistoric {
+  time: string;
+  bet: number;
+  result: number;
+}
+
+export interface PropsGameSlotMachineParams {
+  bet: number;
+  gain: number;
+  multiplier: number;
+  historic: PropsGameHistoric[];
+  setGain: (value: number) => void;
+  setHistoric: (value: PropsGameHistoric[]) => void;
+  setMultiplier: (value: number) => void;
+}
+
 // redux
 export interface PropsUser {
   name: string;

@@ -31,9 +31,17 @@ Este projeto é um protótipo de um **Jogo de Slot Machine** desenvolvido para a
    npm install
    npm run dev
    ```
+
 ### Estrutura de Arquivos
 
 Criado com vite
 
 `src/` - Contém o código fonte da aplicação.
 `package.json` - Contém as dependências do projeto e os scripts.
+
+## Notas pessoais
+
+- [x] config projeto (eslint,redux,metter,vite....)
+- [ ] tela inicial
+- [x] gemer vesão 1
+- [ ] testes

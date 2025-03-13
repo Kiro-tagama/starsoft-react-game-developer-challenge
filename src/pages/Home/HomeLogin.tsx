@@ -67,7 +67,7 @@ export function HomeLogin() {
         {isLogin ? "Logar" : "Registrar"}
       </button>
       <hr className="my-3" />
-      <p className="text-center underline" onClick={() => setIsLogin(!isLogin)}>
+      <p className="text-center underline">
         {isLogin ? "Registre-se" : "Logar-se"}
       </p>
     </div>

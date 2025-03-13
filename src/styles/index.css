@@ -33,7 +33,7 @@ html {
 
 body {
   background-image: url("../assets/decoratives/jungle_background.png");
-  @apply flex justify-center py-1 h-full bg-no-repeat bg-center bg-cover md:bg-contain text-emerald-100 bg-[#081a13] max-h-screen;
+  @apply flex justify-center py-1 h-screen w-screen bg-no-repeat bg-center bg-cover md:bg-contain text-emerald-100 bg-[#081a13] max-h-screen;
 }
 
 body > div {
