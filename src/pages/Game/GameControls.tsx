@@ -105,7 +105,7 @@ export function GameControls({
           className={`bg-white text-[#1a1a1a] p-6 rounded-lg shadow-lg max-w-lg w-full mx-4 transform transition-all duration-300`}
         >
           <div className="flex justify-between items-center">
-            <p className=" text-2xl font-bold ">Modal Title</p>
+            <p className=" text-2xl font-bold ">Info.</p>
             <button
               className="!w-min h-min px-4 py-2 bg-red-600 text-white rounded-lg"
               onClick={() => navigate("/")}

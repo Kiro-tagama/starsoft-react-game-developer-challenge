@@ -125,6 +125,8 @@ export function useSlotMachine(
         renderRef.current.canvas.remove();
         renderRef.current = null;
       }
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
       Runner.stop(runnerRef.current);
       Composite.clear(world, true);
       Engine.clear(engine);
