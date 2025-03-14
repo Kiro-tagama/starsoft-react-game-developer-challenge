@@ -3,19 +3,17 @@ import multiplierBar from "../../../public/assets/bottom_panel/multiplier_bar.pn
 import panel from "../../../public/assets/bottom_panel/panel.png";
 import wallet from "../../../public/assets/bottom_panel/wallet_icon.png";
 import win from "../../../public/assets/bottom_panel/win_icon.png";
-import { PropsGameInfo } from "../../interfaces/interfaces";
+import {
+  PropsGameInfo,
+  PropsGameInfoParams,
+} from "../../interfaces/interfaces";
 
 export function GameInfo({
   balance,
   bet,
   gain,
   multiplier,
-}: {
-  balance: number;
-  bet: number;
-  gain: number;
-  multiplier: number;
-}) {
+}: PropsGameInfoParams) {
   const info: PropsGameInfo[] = [
     { icon: wallet, value: balance },
     { icon: coin, value: bet },
@@ -26,7 +24,7 @@ export function GameInfo({
     <div>
       <h2
         style={{ backgroundImage: `url(${multiplierBar})` }}
-        className="infoCard"
+        className="infoCard !pt-5"
       >
         Multiplicador {multiplier}x
       </h2>

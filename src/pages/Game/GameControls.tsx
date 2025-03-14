@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import auto from "../../../public/assets/controls/auto.png";
 import menu from "../../../public/assets/controls/menu.png";
 import minus from "../../../public/assets/controls/minus.png";
@@ -7,25 +7,20 @@ import turbo from "../../../public/assets/controls/turbo.png";
 import spinner from "../../../public/assets/spinner/button.png";
 import {
   PropsGameControls,
+  PropsGameControlsParams,
   PropsGameHistoric,
 } from "../../interfaces/interfaces";
-
-interface PropsGameControlsParams {
-  userName: string;
-  balance: number;
-  spin: () => void;
-  bet: number;
-  setBet: (value: number) => void;
-  historic: PropsGameHistoric[];
-}
+import { useNavigate } from "react-router-dom";
 
 export function GameControls({
   userName,
   balance,
   spin,
   bet,
-  setBet,
   historic,
+  turboSpin,
+  setTurboSpin,
+  setBet,
 }: PropsGameControlsParams) {
   const controls: PropsGameControls[] = [
     { key: "turbo", img: turbo },
@@ -37,6 +32,7 @@ export function GameControls({
   ];
 
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [automatic, setAutomatic] = useState<boolean>(false);
 
   const betControl = (action: "minus" | "plus") => {
     if (action === "minus" && bet > 1) setBet(bet - 1);
@@ -44,57 +40,100 @@ export function GameControls({
   };
 
   const action: Record<(typeof controls)[number]["key"], () => void> = {
-    turbo: () => console.log("turbo"),
+    turbo: () => setTurboSpin(!turboSpin),
     minus: () => betControl("minus"),
     spinner: () => spin(),
     plus: () => betControl("plus"),
-    auto: () => console.log("auto"),
+    auto: () => setAutomatic(!automatic),
     menu: () => setIsOpen(true),
   };
+
+  useEffect(() => {
+    let interval: NodeJS.Timeout;
+
+    const startInterval = () => {
+      if (automatic && balance > 0 && bet <= balance) {
+        setTimeout(() => {
+          spin();
+        }, 100);
+        interval = setInterval(
+          () => {
+            spin();
+          },
+          turboSpin ? 1500 : 5000
+        );
+      } else {
+        setAutomatic(false);
+      }
+    };
+
+    startInterval();
+
+    return () => {
+      if (interval) clearInterval(interval);
+    };
+  }, [automatic, balance, bet, turboSpin, spin]);
+
+  const navigate = useNavigate();
 
   return (
     <>
       <div className="flex justify-between items-center mt-2">
         <span className="w-3" />
-        {controls.map(({ key, img }, index: number) => (
-          <img
-            onClick={action[key]}
-            src={img}
-            alt={key}
-            key={index}
-            className={`${img == spinner ? "w-20 h-20" : "w-7 h-7"}`}
-          />
+        {controls.map(({ key, img }: PropsGameControls) => (
+          <div key={key} className="flex">
+            <img
+              onClick={action[key]}
+              src={img}
+              alt={key}
+              className={`${img == spinner ? "w-20 h-20" : "w-7 h-7"} transition-transform duration-200 ease-in-out active:scale-90`}
+            />
+            {key == "turbo" || key == "auto" ? (
+              <div
+                className={`w-1.5 h-1.5 rounded-full bg-black/50 ${key == "turbo" && turboSpin ? "bg-emerald-50" : null} ${key == "auto" && automatic ? "bg-emerald-50" : null}`}
+              />
+            ) : null}
+          </div>
         ))}
       </div>
       <div
-        className={`fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 transition-opacity duration-300 z-20 ${
+        className={`fixed inset-0 flex items-center justify-center  bg-opacity-50 transition-opacity duration-300 z-20 ${
           isOpen ? "opacity-100 visible" : "opacity-0 invisible"
         }`}
       >
         <div
-          className={`bg-white p-6 rounded-lg shadow-lg max-w-lg w-full mx-4 transform transition-all duration-300 $`}
+          className={`bg-white text-[#1a1a1a] p-6 rounded-lg shadow-lg max-w-lg w-full mx-4 transform transition-all duration-300`}
         >
-          <div className="flex justify-between">
-            <p className=" text-2xl font-bold mb-4">Modal Title</p>
+          <div className="flex justify-between items-center">
+            <p className=" text-2xl font-bold ">Modal Title</p>
             <button
-              onClick={() => setIsOpen(false)}
-              className="px-4 py-2 bg-red-600 text-white rounded-lg w-min"
+              className="!w-min h-min px-4 py-2 bg-red-600 text-white rounded-lg"
+              onClick={() => navigate("/")}
             >
-              Close
+              Home
             </button>
-            <p>nome: {userName}</p>
-            <p>regras:</p>
-            <li>Retorno coringa dá 100% e demais 50%</li>
-            <li>
-              O multiplicador reseta quando ganha e a recompensa é multiplicada
-            </li>
-            <p>historico:</p>
-            <div>
-              {historic.map((i: PropsGameHistoric) => (
-                <p key={i.time}>{i.toString()}</p>
-              ))}
-            </div>
           </div>
+          <p>nome: {userName}</p>
+          <br />
+          <p>regras:</p>
+          <li>Retorno coringa dá 100% e demais 50%</li>
+          <li>
+            O multiplicador reseta quando ganha e a recompensa é multiplicada
+          </li>
+          <br />
+          <p>historico:</p>
+          <div className=" overflow-y-auto max-h-32">
+            {historic.map((i: PropsGameHistoric) => (
+              <p key={i.time}>
+                {i.time} - aposta:{i.bet}
+                {i.result > 0 ? " - ganhou: R$" + i.result : null}
+              </p>
+            ))}
+          </div>
+          <br />
+          <button onClick={() => setIsOpen(false)} className="text-emerald-50">
+            Close
+          </button>
         </div>
       </div>
     </>

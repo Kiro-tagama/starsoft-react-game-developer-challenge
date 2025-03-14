@@ -23,24 +23,33 @@ export default function Game() {
   const [bet, setBet] = useState<number>(1);
   const [gain, setGain] = useState<number>(0);
   const [historic, setHistoric] = useState<PropsGameHistoric[]>([]);
+  const [turboSpin, setTurboSpin] = useState<boolean>(false);
+
+  if (user.balance == 0) {
+    if (confirm("Está sem saldo, retorne ao início")) {
+      navigate("/");
+    }
+  }
 
   useEffect(() => {
     if (!isLoggedIn) navigate("/");
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
-    <div>
+    <div className="!max-w-360px">
       <GameSlotMachine
         ref={slotMachineRef}
+        balance={Number(user.balance)}
         bet={bet}
         gain={gain}
         historic={historic}
+        turboSpin={turboSpin}
         setGain={setGain}
         setHistoric={setHistoric}
         multiplier={multiplier}
         setMultiplier={setMultiplier}
       />
-
       <GameInfo
         balance={Number(user.balance)}
         bet={bet}
@@ -52,6 +61,8 @@ export default function Game() {
         balance={Number(user.balance)}
         spin={spinReelsForSlotMachine}
         bet={bet}
+        turboSpin={turboSpin}
+        setTurboSpin={setTurboSpin}
         setBet={setBet}
         historic={historic}
       />

@@ -1,12 +1,11 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
 import { loginUser, registerUser } from "../../store/userActions";
 import { PropsUser } from "../../interfaces/interfaces";
 import { AppDispatch } from "../../store/store";
 
 export function HomeLogin() {
-  const [isLogin, setIsLogin] = useState(true);
+  const [isLogin] = useState(true);
   const [form, setForm] = useState<PropsUser>({
     name: "",
     password: "",
@@ -66,10 +65,10 @@ export function HomeLogin() {
       <button onClick={isLogin ? handleLogin : handleRegister}>
         {isLogin ? "Logar" : "Registrar"}
       </button>
-      <hr className="my-3" />
+      {/* <hr className="my-3" />
       <p className="text-center underline">
         {isLogin ? "Registre-se" : "Logar-se"}
-      </p>
+      </p> */}
     </div>
   );
 }

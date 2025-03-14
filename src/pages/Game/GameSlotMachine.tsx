@@ -3,14 +3,15 @@ import { forwardRef } from "react";
 import banner from "../../../public/assets/decoratives/top_banner.png";
 import mascot from "../../../public/assets/mascot/mascot.png";
 import frame from "../../../public/assets/reel/reel_frame.png";
-import { useSlotMachine } from "../../hooks/useSlotMachine";
 import { PropsGameSlotMachineParams } from "../../interfaces/interfaces";
+
+import { useSlotMachine } from "../../hooks/useSlotMachine";
 
 export const GameSlotMachine = forwardRef(
   (params: PropsGameSlotMachineParams, ref) => {
-    const { patternRef, matterContainer } = useSlotMachine(ref, params);
+    const { matterContainer } = useSlotMachine(ref, params);
     return (
-      <div ref={patternRef} className="flex flex-col items-center">
+      <div className="flex flex-col items-center">
         <img
           src={banner}
           alt="top_banner.png"
@@ -24,7 +25,7 @@ export const GameSlotMachine = forwardRef(
           />
           <div
             ref={matterContainer}
-            className="bg-cover bg-center"
+            className="bg-cover bg-center py-2"
             style={{ backgroundImage: `url(${frame})` }}
           />
         </div>
