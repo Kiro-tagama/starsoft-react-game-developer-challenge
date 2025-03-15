@@ -33,7 +33,7 @@ html {
 
 body {
   background-image: url("../assets/decoratives/jungle_background.png");
-  @apply flex justify-center py-1 h-screen w-screen bg-no-repeat bg-center bg-cover md:bg-contain text-emerald-100 bg-[#081a13] max-h-screen;
+  @apply flex justify-center py-1 h-screen w-screen bg-no-repeat bg-center bg-cover md:bg-none text-emerald-100 bg-[#081a13] max-h-screen;
 }
 
 body > div {
@@ -56,11 +56,10 @@ button {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
   cursor: pointer;
   transition: border-color 0.25s;
 
-  @apply w-full;
+  @apply w-full bg-[#081a13] text-emerald-50 md:bg-emerald-50 md:text-[#081a13];
 }
 button:hover {
   border-color: #646cff;

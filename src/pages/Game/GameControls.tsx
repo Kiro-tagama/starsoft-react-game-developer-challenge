@@ -102,12 +102,12 @@ export function GameControls({
         }`}
       >
         <div
-          className={`bg-white text-[#1a1a1a] p-6 rounded-lg shadow-lg max-w-lg w-full mx-4 transform transition-all duration-300`}
+          className={`bg-emerald-50 text-[#081a13] p-6 rounded-lg shadow-lg max-w-lg w-full mx-4 transform transition-all duration-300`}
         >
           <div className="flex justify-between items-center">
             <p className=" text-2xl font-bold ">Info.</p>
             <button
-              className="!w-min h-min px-4 py-2 bg-red-600 text-white rounded-lg"
+              className="!w-min h-min px-4 py-2 rounded-lg !bg-[#081a13] !text-emerald-50"
               onClick={() => navigate("/")}
             >
               Home
@@ -116,10 +116,8 @@ export function GameControls({
           <p>nome: {userName}</p>
           <br />
           <p>regras:</p>
-          <li>Retorno coringa dá 100% e demais 50%</li>
-          <li>
-            O multiplicador reseta quando ganha e a recompensa é multiplicada
-          </li>
+          <li>Retorno: coringa 100% e demais 50%</li>
+          <li>O multiplicador reseta quando ganha e a recompensa multiplica</li>
           <br />
           <p>historico:</p>
           <div className=" overflow-y-auto max-h-32">
@@ -131,7 +129,10 @@ export function GameControls({
             ))}
           </div>
           <br />
-          <button onClick={() => setIsOpen(false)} className="text-emerald-50">
+          <button
+            onClick={() => setIsOpen(false)}
+            className="!bg-[#081a13] !text-emerald-50"
+          >
             Close
           </button>
         </div>

@@ -25,7 +25,7 @@ export const GameSlotMachine = forwardRef(
           />
           <div
             ref={matterContainer}
-            className="bg-cover bg-center py-2"
+            className="bg-cover bg-center py-2 min-h-[300px]"
             style={{ backgroundImage: `url(${frame})` }}
           />
         </div>
