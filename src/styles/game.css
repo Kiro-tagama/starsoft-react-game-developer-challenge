@@ -1,3 +1,5 @@
+@import "tailwindcss";
+
 .infoCard {
   @apply flex bg-cover bg-no-repeat justify-center items-center gap-4 p-3 bg-center w-full;
 }

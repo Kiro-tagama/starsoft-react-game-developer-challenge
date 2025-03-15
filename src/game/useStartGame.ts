@@ -90,8 +90,20 @@ export function useStartGame(
           (body: Body) => Math.abs(body.position.x - columns[columnIndex]) < 30
         );
 
+        // Verifica se há corpos na coluna
+        if (columnBodies.length === 0) {
+          return;
+          console.error("No bodies found in column", columnIndex);
+        }
+
         const randomIndex = Math.floor(Math.random() * images.length);
         const targetBody = columnBodies[randomIndex];
+
+        // Verifica se o targetBody é válido
+        if (!targetBody) {
+          return;
+          console.error("targetBody is undefined");
+        }
 
         Body.setStatic(targetBody, true);
         Body.setPosition(targetBody, {
@@ -103,17 +115,22 @@ export function useStartGame(
           columnBodies[(randomIndex - 1 + images.length) % images.length];
         const belowBody = columnBodies[(randomIndex + 1) % images.length];
 
-        Body.setStatic(aboveBody, true);
-        Body.setPosition(aboveBody, {
-          x: columns[columnIndex],
-          y: containerSize.height / 2 - verticalSpacing, // Posição acima do meio
-        });
+        // Verifica se aboveBody e belowBody são válidos
+        if (aboveBody) {
+          Body.setStatic(aboveBody, true);
+          Body.setPosition(aboveBody, {
+            x: columns[columnIndex],
+            y: containerSize.height / 2 - verticalSpacing, // Posição acima do meio
+          });
+        }
 
-        Body.setStatic(belowBody, true);
-        Body.setPosition(belowBody, {
-          x: columns[columnIndex],
-          y: containerSize.height / 2 + verticalSpacing, // Posição abaixo do meio
-        });
+        if (belowBody) {
+          Body.setStatic(belowBody, true);
+          Body.setPosition(belowBody, {
+            x: columns[columnIndex],
+            y: containerSize.height / 2 + verticalSpacing, // Posição abaixo do meio
+          });
+        }
 
         columnBodies.forEach((body: Body, index: number) => {
           if (body !== targetBody && body !== aboveBody && body !== belowBody) {

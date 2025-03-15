@@ -60,7 +60,7 @@ describe("Game Page Tests", () => {
     cy.get('img[alt="auto"]').click();
     cy.get('img[alt="auto"] + div').should("have.class", "bg-emerald-50");
 
-    cy.wait(10000);
+    cy.wait(5000);
     cy.get('img[alt="auto"]').click();
   });
 });

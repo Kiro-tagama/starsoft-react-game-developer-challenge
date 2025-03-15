@@ -26,11 +26,11 @@ export function useSlotMachine(
   const engineRef = useRef(Engine.create());
   const renderRef = useRef<Render | null>(null);
   const runnerRef = useRef<Runner | null>(null);
+  const bodiesRef = useRef<Body[]>([]);
 
   // params of running game
   const [started, setStarted] = useState<boolean>(false);
   const [gameRuning, setGameRuning] = useState<boolean>(false);
-  const bodiesRef = useRef<Body[]>([]);
 
   const logicGame = useLogicGame(
     matterContainer && matterContainer,
@@ -50,9 +50,12 @@ export function useSlotMachine(
   );
 
   useEffect(() => {
-    if (logicGame) logicGame();
+    console.log(bodiesRef);
+    if (logicGame && bodiesRef) {
+      logicGame();
+    }
 
-    // assim que carrega ele aplica essa função zerada para poder parar o slot
+    // reset the game
     setTimeout(() => spin(0), 0);
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
