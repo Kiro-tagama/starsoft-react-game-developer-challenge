@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import banana from "../../public/assets/reel_symbols/banana_icon.png";
 import flora from "../../public/assets/reel_symbols/flora_icon.png";
 import hourglass from "../../public/assets/reel_symbols/hourglass_icon.png";
@@ -9,7 +10,11 @@ export function useSettings(matterContainer: {
   current: { offsetWidth: number; offsetHeight: number };
 }) {
   const images = [banana, flora, hourglass, joker, leaf, mango];
-
+  useEffect(() => {
+    if (matterContainer.current) {
+      console.log("tamanho atualizado:", matterContainer.current.offsetWidth);
+    }
+  }, [matterContainer.current]);
   // Dimensões do contêiner
   const containerSize = {
     width: matterContainer.current?.offsetWidth || 360,

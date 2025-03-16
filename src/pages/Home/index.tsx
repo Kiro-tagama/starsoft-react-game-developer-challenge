@@ -5,5 +5,9 @@ import { HomeLogin } from "./HomeLogin";
 
 export default function Home() {
   const { isLoggedIn } = useSelector((state: RootState) => state.user);
-  return <div>{isLoggedIn ? <HomeBalance /> : <HomeLogin />}</div>;
+  return (
+    <div className=" max-w-80">
+      {isLoggedIn ? <HomeBalance /> : <HomeLogin />}
+    </div>
+  );
 }
