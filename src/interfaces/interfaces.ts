@@ -32,6 +32,10 @@ export interface PropsGameHistoric {
   result: number;
 }
 
+export interface SlotMachineHandle {
+  spinReels: () => void;
+}
+
 export interface PropsGameSlotMachineParams {
   balance: number;
   bet: number;

@@ -13,25 +13,19 @@ export function HomeLogin() {
   });
   const dispatch = useDispatch<AppDispatch>();
 
-  const handleLogin = async () => {
-    if (!form.name || !form.password) return alert("Compos não preenchidos");
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!form.name || !form.password) return alert("Campos não preenchidos");
 
     try {
-      await dispatch(loginUser({ name: form.name, password: form.password }));
+      if (isLogin) {
+        await dispatch(loginUser({ name: form.name, password: form.password }));
+      } else {
+        await dispatch(registerUser(form));
+        await dispatch(loginUser({ name: form.name, password: form.password }));
+      }
     } catch (error) {
-      alert("Login failed!");
-      console.log(error);
-    }
-  };
-
-  const handleRegister = async () => {
-    if (!form.name || !form.password) return alert("Compos não preenchidos");
-
-    try {
-      await dispatch(registerUser(form));
-      await handleLogin();
-    } catch (error) {
-      alert("Registration failed!");
+      alert(isLogin ? "Login failed!" : "Registration failed!");
       console.log(error);
     }
   };
@@ -40,31 +34,31 @@ export function HomeLogin() {
     <div>
       <h2>{isLogin ? "Login" : "Register"}</h2>
       <br />
-      <label>
-        Name:
-        <input
-          type="text"
-          value={form.name}
-          onChange={(e) => setForm({ ...form, name: e.target.value })}
-          required
-        />
-      </label>
-      <br />
-      <br />
-      <label>
-        Password:
-        <input
-          type="password"
-          value={form.password}
-          onChange={(e) => setForm({ ...form, password: e.target.value })}
-          required
-        />
-      </label>
-      <br />
-      <br />
-      <button onClick={isLogin ? handleLogin : handleRegister}>
-        {isLogin ? "Logar" : "Registrar"}
-      </button>
+      <form onSubmit={handleSubmit}>
+        <label>
+          Name:
+          <input
+            type="text"
+            value={form.name}
+            onChange={(e) => setForm({ ...form, name: e.target.value })}
+            required
+          />
+        </label>
+        <br />
+        <br />
+        <label>
+          Password:
+          <input
+            type="password"
+            value={form.password}
+            onChange={(e) => setForm({ ...form, password: e.target.value })}
+            required
+          />
+        </label>
+        <br />
+        <br />
+        <button type="submit">{isLogin ? "Logar" : "Registrar"}</button>
+      </form>
       {/* <hr className="my-3" />
       <p className="text-center underline">
         {isLogin ? "Registre-se" : "Logar-se"}

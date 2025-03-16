@@ -6,14 +6,13 @@ import {
   useState,
 } from "react";
 import { Engine, Render, Runner, Body } from "matter-js";
-import { PropsGameSlotMachineParams } from "../interfaces/interfaces";
+import {
+  PropsGameSlotMachineParams,
+  SlotMachineHandle,
+} from "../interfaces/interfaces";
 
 import { useLogicGame } from "../game/useLogicGame";
 import { useStartGame } from "../game/useStartGame";
-
-interface SlotMachineHandle {
-  spinReels: () => void;
-}
 
 export function useSlotMachine(
   ref: ForwardedRef<SlotMachineHandle>,

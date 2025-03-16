@@ -123,8 +123,8 @@ export function GameControls({
           <div className=" overflow-y-auto max-h-32">
             {historic.map((i: PropsGameHistoric) => (
               <p key={i.time}>
-                {i.time} - aposta:{i.bet}
-                {i.result > 0 ? " - ganhou: R$" + i.result : null}
+                {i.time} - aposta: {i.bet.toFixed(2)}
+                {i.result > 0 ? " - ganhou: R$" + i.result.toFixed(2) : null}
               </p>
             ))}
           </div>

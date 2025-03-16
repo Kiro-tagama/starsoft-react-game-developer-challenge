@@ -17,3 +17,8 @@ export const updateBalance = (balance: number) =>
     type: "UPDATE_BALANCE",
     payload: balance,
   }) as const;
+
+export type UserAction =
+  | ReturnType<typeof registerUser>
+  | ReturnType<typeof loginUser>
+  | ReturnType<typeof updateBalance>;

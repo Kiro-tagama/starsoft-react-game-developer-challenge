@@ -10,7 +10,8 @@ export function HomeBalance() {
   const navigate = useNavigate();
   const [value, setValue] = useState(0);
 
-  const handleBalance = () => {
+  const handleBalance = async (e: React.FormEvent) => {
+    e.preventDefault();
     if (value <= 0 && user.balance && user.balance > 0) return navigate("game");
     if (value <= 0) return alert("Adicione saldo para jogar");
 
@@ -21,16 +22,19 @@ export function HomeBalance() {
   return (
     <div>
       <h1>Bem-vindo, {user.name}</h1>
-      <p>Saldo atual: ${user.balance}</p>
-
-      <input
-        type="number"
-        value={value}
-        onChange={(e) => setValue(parseFloat(e.target.value))}
-      />
+      <p>Saldo atual: ${user.balance?.toFixed(2)}</p>
       <br />
-      <br />
-      <button onClick={handleBalance}>Atualizar e jogar</button>
+      <p>Atualizar saldo</p>
+      <form onSubmit={handleBalance}>
+        <input
+          type="number"
+          value={value}
+          onChange={(e) => setValue(parseFloat(e.target.value))}
+        />
+        <br />
+        <br />
+        <button type="submit">Atualizar e jogar</button>
+      </form>
     </div>
   );
 }
