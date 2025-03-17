@@ -1,5 +1,8 @@
 # Jogo de Slot Machine - Jogo Web
 
+vercel deploy:
+https://starsoft-react-game-developer-challenge.vercel.app
+
 ## Objetivo
 
 Este projeto é um protótipo de um **Jogo de Slot Machine** desenvolvido para a web utilizando **React**, **TypeScript** e a game library **Matter.js**. O objetivo é demonstrar habilidades em desenvolvimento de jogos, proporcionando uma experiência de usuário envolvente e interações suaves.
